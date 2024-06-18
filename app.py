@@ -5,30 +5,24 @@ from scipy.stats import f
 
 st.title("Análise de Regressão Múltipla e Tabela ANOVA")
 
-# Upload do arquivo Excel
 uploaded_file = st.file_uploader("Escolha um arquivo Excel", type="xlsx")
 
 if uploaded_file is not None:
-    # Leitura do arquivo Excel
     df = pd.read_excel(uploaded_file)
 
-    # Verificação se as colunas necessárias estão presentes
     if not set(['y', 'x1', 'x2']).issubset(df.columns):
         st.error("O arquivo Excel deve conter as colunas: 'y', 'x1', e 'x2'.")
     else:
-        # Extraindo os dados
         y = df['y'].values
         x1 = df['x1'].values
         x2 = df['x2'].values
 
         n = len(y)
 
-        # Calculando as médias
         media_x1 = np.mean(x1)
         media_x2 = np.mean(x2)
         media_Y = np.mean(y)
 
-        # Calculando as somas e produtos
         soma_Y = np.sum(y)
         soma_x1 = np.sum(x1)
         soma_x2 = np.sum(x2)
